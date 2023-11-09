@@ -45,6 +45,4 @@ server.on("listening", () => {
   console.log("Listening on " + bind);
 });
 
-server.listen(port, () => {
-  console.log(`Notre API a démarée sur : http://localhost:${port}`);
-});
+server.listen(port);
