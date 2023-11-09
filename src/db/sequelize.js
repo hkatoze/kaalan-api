@@ -10,7 +10,7 @@ const sequelize = new Sequelize(
   "Kind@14042000",
   {
     host: "haalemtic.com",
-    dialect: "mysql",
+    dialect: "mariadb",
     dialectOptions: {},
     logging: true,
   }
