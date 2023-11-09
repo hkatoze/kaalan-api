@@ -1,10 +1,11 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const { initDb } = require("./src/db/sequelize");
+const cors = require("cors");
 
 const app = express();
 const port = process.env.PORT || 3000;
-app.use(bodyParser.json());
+app.use(bodyParser.json()).use(cors());
 initDb();
 
 /* ........All routes list........... */
@@ -53,3 +54,4 @@ app.use(({ res }) => {
 app.listen(port, () => {
   console.log(`Notre api a démaré sur : http://localhost:${port}`);
 });
+module.exports = app;
