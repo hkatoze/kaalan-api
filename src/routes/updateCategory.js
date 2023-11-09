@@ -3,7 +3,7 @@ const { ValidationError } = require("sequelize");
 const auth = require("../auth/auth");
 
 module.exports = (app) => {
-  app.put("/kaalan/api/categories/:id", auth, (req, res) => {
+  app.put("/api/categories/:id", auth, (req, res) => {
     const id = req.params.id;
     Category.update(req.body, { where: { id: id } })
       .then((_) => {

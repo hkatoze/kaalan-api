@@ -2,7 +2,7 @@ const { Author } = require("../db/sequelize");
 const auth = require("../auth/auth");
 
 module.exports = (app) => {
-  app.get("/kaalan/api/authors/:id", auth, (req, res) => {
+  app.get("/api/authors/:id", auth, (req, res) => {
     const id = req.params.id;
     Author.findByPk(id)
       .then((author) => {

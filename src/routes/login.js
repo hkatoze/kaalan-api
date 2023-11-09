@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const privateKey = require("../auth/private_key");
 
 module.exports = (app) => {
-  app.post("/kaalan/api/login", (req, res) => {
+  app.post("/api/login", (req, res) => {
     User.findOne({ where: { emailAddress: req.body.emailAddress } })
       .then((user) => {
         if (!user) {

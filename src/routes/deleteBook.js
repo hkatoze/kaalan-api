@@ -2,7 +2,7 @@ const { Book } = require("../db/sequelize");
 const auth = require("../auth/auth");
 
 module.exports = (app) => {
-  app.delete("/kaalan/api/books/:id", auth, (req, res) => {
+  app.delete("/api/books/:id", auth, (req, res) => {
     const id = req.params.id;
 
     Book.findByPk(id)

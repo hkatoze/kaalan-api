@@ -3,7 +3,7 @@ const { ValidationError } = require("sequelize");
 const auth = require("../auth/auth");
 
 module.exports = (app) => {
-  app.post("/kaalan/api/authors/", auth, (req, res) => {
+  app.post("/api/authors/", auth, (req, res) => {
     Author.create(req.body)
       .then((author) => {
         const message = `L'auteur ${author.name} a bien été ajouté.`;

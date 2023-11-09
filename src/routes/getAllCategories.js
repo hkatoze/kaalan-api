@@ -2,7 +2,7 @@ const { Category } = require("../db/sequelize");
 const auth = require("../auth/auth");
 
 module.exports = (app) => {
-  app.get("/kaalan/api/categories", auth, (req, res) => {
+  app.get("/api/categories", auth, (req, res) => {
     Category.findAll()
       .then((categories) => {
         const message = `La liste complètes des categories a bien été reccupérée.`;

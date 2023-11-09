@@ -12,7 +12,7 @@ const sequelize = new Sequelize(
     host: "haalemtic.com",
     dialect: "mysql",
     dialectOptions: {},
-    logging: true,
+    logging: false,
   }
 );
 

@@ -3,7 +3,7 @@ const { Book } = require("../db/sequelize");
 const auth = require("../auth/auth");
 
 module.exports = (app) => {
-  app.post("/kaalan/api/books/", auth, (req, res) => {
+  app.post("/api/books/", auth, (req, res) => {
     Book.create(req.body)
       .then((book) => {
         const message = `Le livre ${book.title} a bien été ajouté.`;

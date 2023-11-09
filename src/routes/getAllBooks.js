@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 const auth = require("../auth/auth");
 
 module.exports = (app) => {
-  app.get("/kaalan/api/books", auth, (req, res) => {
+  app.get("/api/books", auth, (req, res) => {
     if (req.query.category) {
       const category = req.query.category;
       const limit = req.query.limit ? parseInt(req.query.limit) : null;

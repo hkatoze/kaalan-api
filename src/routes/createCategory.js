@@ -3,7 +3,7 @@ const { Category } = require("../db/sequelize");
 const auth = require("../auth/auth");
 
 module.exports = (app) => {
-  app.post("/kaalan/api/categories/", auth, (req, res) => {
+  app.post("/api/categories/", auth, (req, res) => {
     Category.create(req.body)
       .then((category) => {
         const message = `La catégorie ${category.name} a bien été crée.`;

@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const { User } = require("../db/sequelize");
 
 module.exports = (app) => {
-  app.post("/kaalan/api/signup", (req, res) => {
+  app.post("/api/signup", (req, res) => {
     bcrypt.hash(req.body.password, 10).then((hash) => {
       User.create({
         emailAddress: req.body.emailAddress,

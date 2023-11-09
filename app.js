@@ -3,7 +3,7 @@ const express = require("express");
 const { initDb } = require("./src/db/sequelize");
 
 const app = express();
-
+const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 initDb();
 
@@ -48,6 +48,10 @@ require("./src/routes/login")(app);
 app.use(({ res }) => {
   const message = `Impossible de trouver la ressource demandée! Vous pouvez essayer une autre URL.`;
   res.status(404).json({ message });
+});
+
+app.listen(port, () => {
+  console.log(`Notre api a démaré sur : http://localhost:${port}`);
 });
 
 module.exports = app;

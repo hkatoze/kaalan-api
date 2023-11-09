@@ -2,7 +2,7 @@ const { Category } = require("../db/sequelize");
 const auth = require("../auth/auth");
 
 module.exports = (app) => {
-  app.get("/kaalan/api/categories/:id", auth, (req, res) => {
+  app.get("/api/categories/:id", auth, (req, res) => {
     const id = req.params.id;
     Category.findByPk(id)
       .then((category) => {
