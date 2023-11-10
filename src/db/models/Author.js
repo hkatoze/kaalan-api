@@ -16,6 +16,14 @@ module.exports = (Sequelize, DataTypes) => {
           notNull: { msg: "Le nom de l'auteur est une propriété requise" },
         },
       },
+      profilImg: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: { msg: "La photo de l'auteur est une propriété requise" },
+          notNull: { msg: "La photo de l'auteur est une propriété requise" },
+        },
+      },
     },
     { timestamp: true, updatedAt: false }
   );

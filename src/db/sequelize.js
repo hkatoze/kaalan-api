@@ -3,6 +3,7 @@ const BookModel = require("./models/Book");
 const AuthorModel = require("./models/Author");
 const CategorieModel = require("./models/Categorie");
 const UserModel = require("./models/User");
+const { books, authors, categories, users } = require("./testData");
 
 const sequelize = new Sequelize(
   "u824779150_kaalan",
@@ -22,7 +23,19 @@ const Category = CategorieModel(sequelize, DataTypes);
 const User = UserModel(sequelize, DataTypes);
 
 const initDb = () => {
-  return sequelize.sync({ force: true }).then((_) => {
+  return sequelize.sync().then((_) => {
+    /*   books.map((book) => {
+      Book.create(book).then((book) => {});
+    });
+    authors.map((author) => {
+      Author.create(author).then((author) => {});
+    });
+    categories.map((category) => {
+      Category.create(category).then((category) => {});
+    });
+    users.map((user) => {
+      User.create(user).then((user) => {});
+    }); */
     console.log(`La base de données a bien été initialisée !`);
   });
 };
