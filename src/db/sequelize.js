@@ -22,7 +22,7 @@ const Category = CategorieModel(sequelize, DataTypes);
 const User = UserModel(sequelize, DataTypes);
 
 const initDb = () => {
-  return sequelize.sync().then((_) => {
+  return sequelize.sync({ force: true }).then((_) => {
     console.log(`La base de données a bien été initialisée !`);
   });
 };
