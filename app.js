@@ -51,8 +51,8 @@ app.use(({ res }) => {
   res.status(404).json({ message });
 });
 
-/* app.listen(port, () => {
+app.listen(port, () => {
   console.log(`Notre api a démaré sur : http://localhost:${port}`);
-}); */
+});
 
 module.exports = app;
