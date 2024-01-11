@@ -1,4 +1,4 @@
-const validRoles = ["USER", "ADMIN"];
+ 
 
 module.exports = (Sequelize, DataTypes) => {
   return Sequelize.define(
@@ -11,7 +11,7 @@ module.exports = (Sequelize, DataTypes) => {
       },
       emailAddress: {
         type: DataTypes.STRING,
-        allowNull: false,
+
         unique: {
           msg: "L'adresse email fournit est déjà utilisé.",
         },
@@ -19,8 +19,19 @@ module.exports = (Sequelize, DataTypes) => {
           isEmail: {
             msg: "L'adresse email fournit n'est pas valide",
           },
-          notEmpty: { msg: "L'adresse email est requise" },
-          notNull: { msg: "L'adresse email est requise" },
+        },
+      },
+      phone: {
+        type: DataTypes.STRING,
+
+        unique: {
+          msg: "Ce numéro de téléphone est déjà utilisé.",
+        },
+        is: {
+          args: [
+            /\d{3}-\d{3}-\d{4}/,
+          ],
+          msg: "Le numéro de téléphone n'est pas valide.",
         },
       },
       username: {
@@ -28,7 +39,11 @@ module.exports = (Sequelize, DataTypes) => {
         unique: {
           msg: "Le nom d'utilisateur fournit est déjà utilisé.",
         },
+        allowNull: false,
+
         validate: {
+          notEmpty: { msg: "Le nom d'utilisateur est requis est requis" },
+          notNull: { msg: "Le nom d'utilisateur est requis" },
           isAlphanumeric: {
             msg: "Le nom d'utilisateur doit être à caractère Alphanumérique (ex: karim_sanogo).",
           },
@@ -36,19 +51,34 @@ module.exports = (Sequelize, DataTypes) => {
       },
       role: {
         type: DataTypes.STRING,
+        allowNull: false,
+
         validate: {
-          isRoleValid(value) {
-            if (!validRoles.includes(value)) {
-              throw new Error(
-                `Le role de l'utilisateur doit appartenir à la liste suivante [${validRoles}]`
-              );
-            }
-          },
+          notEmpty: { msg: "Votre role dans l'entreprise est requise" },
+          notNull: { msg: "Votre role dans l'entreprise est requise" },
+        },
+      },
+      firstname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+
+        validate: {
+          notEmpty: { msg: "Votre Nom est requis" },
+          notNull: { msg: "Votre nom est requis" },
+        },
+      },
+      lastname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+
+        validate: {
+          notEmpty: { msg: "Votre prénom est requis" },
+          notNull: { msg: "Votre prénom est requis" },
         },
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
+
         validate: {
           is: {
             args: [
@@ -56,8 +86,6 @@ module.exports = (Sequelize, DataTypes) => {
             ],
             msg: "Le mot de passe doit être formé d'au moins 8 caractères, avoir au moins une lettre majuscule,au moins une lettre miniscule, au moins un caractère spécial et au moins un chiffre.",
           },
-          notEmpty: { msg: "Le mot de passe est requis." },
-          notNull: { msg: "Le mot de passe est requis." },
         },
       },
     },

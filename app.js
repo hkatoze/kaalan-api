@@ -14,6 +14,12 @@ initDb();
 
 /* ........All routes list........... */
 require("./src/routes/home")(app);
+
+/* ============ADMIN ROUTES============= */
+//Get user by id
+require("./src/routes/getUserByPk")(app);
+//Update user
+require("./src/routes/updateUser")(app);
 //Fetch all authors
 require("./src/routes/getAllAuthors")(app);
 //Get author by id
@@ -44,10 +50,12 @@ require("./src/routes/createBook")(app);
 require("./src/routes/updateBook")(app);
 //Delete book
 require("./src/routes/deleteBook")(app);
-//signup
-require("./src/routes/signup")(app);
-//Login
-require("./src/routes/login")(app);
+
+/* ============API AUTH ROUTES============= */
+//signup to API
+require("./src/routes/signupToApi")(app);
+//Login to API
+require("./src/routes/loginToApi")(app);
 
 //404 error managment
 app.use(({ res }) => {

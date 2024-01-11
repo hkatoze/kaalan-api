@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const privateKey = require("../auth/private_key");
 
 module.exports = (app) => {
-  app.post("/api/login", (req, res) => {
+  app.post("/api/loginToApi", (req, res) => {
     User.findOne({ where: { emailAddress: req.body.emailAddress } })
       .then((user) => {
         if (!user) {

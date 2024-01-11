@@ -43,7 +43,7 @@ module.exports = (Sequelize, DataTypes) => {
         },
       },
       description: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -92,6 +92,12 @@ module.exports = (Sequelize, DataTypes) => {
             msg: "La catégorie du livre est une propriété requise",
           },
         },
+      },
+
+      bookLink: {
+        type: DataTypes.STRING,
+         
+         
       },
     },
     { timestamp: true, updatedAt: false }

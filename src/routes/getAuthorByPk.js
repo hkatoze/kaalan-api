@@ -1,4 +1,4 @@
-const { Author } = require("../db/sequelize");
+const { Author, Book } = require("../db/sequelize");
 const auth = require("../auth/auth");
 
 module.exports = (app) => {
@@ -13,7 +13,12 @@ module.exports = (app) => {
         }
         const message = `L'auteur ${author.name} a bien été reccupéré.`;
 
-        res.json({ message, data: author });
+        const authorName = author.name;
+
+        Book.findAll({ where: { author: authorName } }).then((books) => {
+          const message = `Il y'a au total ${books.length} livres de l'auteur ${author}`;
+          res.json({ message, data: { author: author, books: books } });
+        });
       })
       .catch((error) => {
         const message = `L'auteur n'a pas pu être reccupéré. Réessayer dans quelques instants.`;
