@@ -1,18 +1,36 @@
-const { Author } = require("../db/sequelize");
+const { Author, Book } = require("../db/sequelize");
 const auth = require("../auth/auth");
 
 module.exports = (app) => {
   app.get("/api/authors", auth, (req, res) => {
-    const id = req.params.id;
-
     Author.findAll()
       .then((authors) => {
-        const message = `La liste complète des auteurs a bien été reccupérée.`;
+        const message = `La liste complète des auteurs avec leurs livres a bien été récupérée.`;
 
-        res.json({ message, data: authors });
+        // Utilisez Promise.all pour traiter toutes les promesses en parallèle
+        const authorPromises = authors.map((author) => {
+          return Book.findAll({ where: { author: author.name } });
+        });
+
+        Promise.all(authorPromises)
+          .then((booksArray) => {
+            // Ajouter la liste des livres à chaque auteur
+            const authorsWithBooks = authors.map((author, index) => {
+              return {
+                author: author,
+                books: booksArray[index],
+              };
+            });
+
+            res.json({ message, data: authorsWithBooks });
+          })
+          .catch((error) => {
+            const message = `Erreur lors de la récupération des livres des auteurs.`;
+            res.status(500).json({ message, data: error });
+          });
       })
       .catch((error) => {
-        const message = `La liste complète des auteurs n'a pas pu être reccupéré. Réessayer dans quelques instants.`;
+        const message = `La liste complète des auteurs n'a pas pu être récupérée. Réessayez dans quelques instants.`;
         res.status(500).json({ message, data: error });
       });
   });
