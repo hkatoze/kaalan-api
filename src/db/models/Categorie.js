@@ -19,6 +19,18 @@ module.exports = (Sequelize, DataTypes) => {
           },
         },
       },
+      icon: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "L'icon de la catégorie est une propriété requise",
+          },
+          notNull: {
+            msg: "L'icon de la catégorie est une propriété requise",
+          },
+        },
+      },
     },
     { timestamp: true, updatedAt: false }
   );
