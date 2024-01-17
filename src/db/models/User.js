@@ -32,6 +32,12 @@ module.exports = (Sequelize, DataTypes) => {
       },
       username: {
         type: DataTypes.STRING,
+        allowNull: false,
+
+        validate: {
+          notEmpty: { msg: "Le nom d'utilisateur une propriété requise" },
+          notNull: { msg: "Le nom d'utilisateur une propriété requise" },
+        },
       },
       role: {
         type: DataTypes.STRING,
