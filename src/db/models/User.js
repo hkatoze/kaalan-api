@@ -1,5 +1,3 @@
- 
-
 module.exports = (Sequelize, DataTypes) => {
   return Sequelize.define(
     "User",
@@ -28,26 +26,12 @@ module.exports = (Sequelize, DataTypes) => {
           msg: "Ce numéro de téléphone est déjà utilisé.",
         },
         is: {
-          args: [
-            /\d{3}-\d{3}-\d{4}/,
-          ],
+          args: [/\d{3}-\d{3}-\d{4}/],
           msg: "Le numéro de téléphone n'est pas valide.",
         },
       },
       username: {
         type: DataTypes.STRING,
-        unique: {
-          msg: "Le nom d'utilisateur fournit est déjà utilisé.",
-        },
-        allowNull: false,
-
-        validate: {
-          notEmpty: { msg: "Le nom d'utilisateur est requis est requis" },
-          notNull: { msg: "Le nom d'utilisateur est requis" },
-          isAlphanumeric: {
-            msg: "Le nom d'utilisateur doit être à caractère Alphanumérique (ex: karim_sanogo).",
-          },
-        },
       },
       role: {
         type: DataTypes.STRING,
