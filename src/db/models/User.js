@@ -25,23 +25,21 @@ module.exports = (Sequelize, DataTypes) => {
         unique: {
           msg: "Ce numéro de téléphone est déjà utilisé.",
         },
-      
+        is: {
+          args: [/\d{3}-\d{3}-\d{4}/],
+          msg: "Le numéro de téléphone n'est pas valide.",
+        },
       },
       username: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: { msg: "Le nom d'utilisateur une propriété requise" },
-          notNull: { msg: "Le nom d'utilisateur une propriété requise" },
-        },
       },
       role: {
         type: DataTypes.STRING,
         allowNull: false,
 
         validate: {
-          notEmpty: { msg: "Votre role dans l'entreprise est requis" },
-          notNull: { msg: "Votre role dans l'entreprise est requis" },
+          notEmpty: { msg: "Votre role dans l'entreprise est requise" },
+          notNull: { msg: "Votre role dans l'entreprise est requise" },
         },
       },
       firstname: {
@@ -50,7 +48,7 @@ module.exports = (Sequelize, DataTypes) => {
 
         validate: {
           notEmpty: { msg: "Votre Nom est requis" },
-          notNull: { msg: "Votre Nom est requis" },
+          notNull: { msg: "Votre nom est requis" },
         },
       },
       lastname: {
