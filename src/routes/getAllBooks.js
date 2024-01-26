@@ -27,7 +27,7 @@ module.exports = (app) => {
     if (req.query.libraryOf) {
       const userId = req.query.libraryOf;
       const libraryBooks = [];
-      return User.findByPk(userId).then((user) => {
+      User.findByPk(userId).then((user) => {
         if (user === null) {
           const message = `L'utilisateur demandé n'existe pas. Réessayer avec un autre identifiant.`;
 
@@ -44,14 +44,13 @@ module.exports = (app) => {
               return res.status(404).json({ message });
             }
 
-            return res.json(book);
+            return book;
           });
           libraryBooks.push(book);
         });
         const message = `La liste complète des livres a bien été reccupérée.`;
         res.json({ message, data: libraryBooks });
       });
-    
     }
 
     if (req.query.search) {
