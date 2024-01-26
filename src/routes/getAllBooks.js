@@ -48,6 +48,7 @@ module.exports = (app) => {
           });
           libraryBooks.push(book);
         });
+        const message = `La liste complète des livres a bien été reccupérée.`;
         res.json({ message, data: libraryBooks });
       });
     
