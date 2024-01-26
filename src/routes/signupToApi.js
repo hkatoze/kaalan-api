@@ -13,6 +13,7 @@ module.exports = (app) => {
         role: req.body.role,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
+        libraryBooks: ""
       })
         .then((user) => {
           const message = `Compte crée avec succès!`;

@@ -1,4 +1,4 @@
-const { Book } = require("../db/sequelize");
+const { Book, User } = require("../db/sequelize");
 const { Op } = require("sequelize");
 const auth = require("../auth/auth");
 
@@ -22,6 +22,33 @@ module.exports = (app) => {
       return Book.findAll({ where: { author: author } }).then((books) => {
         const message = `Il y'a au total ${books.length} livres de l'auteur ${author}`;
         res.json({ message, data: books });
+      });
+    }
+    if (req.query.libraryOf) {
+      const userId = req.query.libraryOf;
+
+      User.findByPk(userId).then((user) => {
+        if (user === null) {
+          const message = `L'utilisateur demandé n'existe pas. Réessayer avec un autre identifiant.`;
+
+          return res.status(404).json({ message });
+        }
+
+        const libraryBooksId = user["libraryBooks"].split(";").filter(Boolean);
+        const libraryBooks = [];
+
+        libraryBooksId.forEach((bookId) => {
+          const book = Book.findByPk(bookId).then((book) => {
+            if (book === null) {
+              const message = `Le livre  demandé n'existe pas. Réessayer avec un autre identifiant.`;
+
+              return res.status(404).json({ message });
+            }
+
+            return book;
+          });
+          libraryBooks.push(book);
+        });
       });
     }
 

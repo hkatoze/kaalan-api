@@ -72,6 +72,9 @@ module.exports = (Sequelize, DataTypes) => {
           },
         },
       },
+      libraryBooks: {
+        type: DataTypes.STRING,
+      },
     },
     { timestamp: true }
   );
