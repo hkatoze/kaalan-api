@@ -44,10 +44,9 @@ module.exports = (app) => {
       const userId = req.query.library;
 
       return User.findByPk(userId).then((user) => {
-        const libraryBooksId = user["libraryBooks"].split(";").filter(Boolean);
+        const libraryBooksId = user["libraryBooks"].split(",").filter(Boolean);
         let libraryBooks = [];
 
-        // Utiliser Promise.all pour attendre que toutes les promesses soient résolues
         const bookPromises = libraryBooksId.map((bookId) => {
           return Book.findByPk(Number(bookId)).then((book) => {
             if (book === null) {
@@ -58,7 +57,6 @@ module.exports = (app) => {
           });
         });
 
-        // Utiliser Promise.all pour attendre que toutes les promesses soient résolues
         return Promise.all(bookPromises).then(() => {
           const message = `La librairie complète de l'utilisateur a bien été récupérée.`;
           res.json({ message, data: libraryBooks });
