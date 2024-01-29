@@ -44,33 +44,16 @@ module.exports = (Sequelize, DataTypes) => {
       },
       firstname: {
         type: DataTypes.STRING,
-        allowNull: false,
-
-        validate: {
-          notEmpty: { msg: "Votre Nom est requis" },
-          notNull: { msg: "Votre nom est requis" },
-        },
+        
       },
       lastname: {
         type: DataTypes.STRING,
-        allowNull: false,
-
-        validate: {
-          notEmpty: { msg: "Votre prénom est requis" },
-          notNull: { msg: "Votre prénom est requis" },
-        },
+         
       },
       password: {
         type: DataTypes.STRING,
 
-        validate: {
-          is: {
-            args: [
-              /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
-            ],
-            msg: "Le mot de passe doit être formé d'au moins 8 caractères, avoir au moins une lettre majuscule,au moins une lettre miniscule, au moins un caractère spécial et au moins un chiffre.",
-          },
-        },
+         
       },
       libraryBooks: {
         type: DataTypes.STRING,
