@@ -14,6 +14,7 @@ module.exports = (app) => {
         if (error instanceof ValidationError) {
           return res.status(400).json({ message: error.message });
         }
+       
         const message = `La suggestion n'a pas pu être ajoutée. Réessayer dans quelques instants.`;
         res.status(500).json({ message, data: error });
       });

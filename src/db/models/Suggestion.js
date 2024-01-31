@@ -7,7 +7,7 @@ module.exports = (Sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      userId: {
+      idOfuser: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
@@ -15,16 +15,16 @@ module.exports = (Sequelize, DataTypes) => {
           notNull: { msg: "Le id de l'utilisateur est une propriété requise" },
         },
       },
-      message: {
+      suggestion: {
         type: DataTypes.TEXT,
         allowNull: false,
 
         validate: {
           notEmpty: {
-            msg: "Le message est une propriété requise",
+            msg: "La suggestion est une propriété requise",
           },
           notNull: {
-            msg: "Le message est une propriété requise",
+            msg: "La suggestion est une propriété requise",
           },
         },
       },

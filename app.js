@@ -14,11 +14,7 @@ initDb();
 
 /* ........All routes list........... */
 require("./src/routes/home")(app);
-require("./src/routes/createSuggestion")(app);
-require("./src/routes/getSuggestionByPk")(app);
-require("./src/routes/getAllSuggestions")(app);
-require("./src/routes/deleteSuggestion")(app);
-require("./src/routes/updateSuggestion")(app);
+
 
 /* ============ADMIN ROUTES============= */
 //Get user by id
@@ -55,6 +51,16 @@ require("./src/routes/createBook")(app);
 require("./src/routes/updateBook")(app);
 //Delete book
 require("./src/routes/deleteBook")(app);
+//send suggestion
+require("./src/routes/createSuggestion")(app);
+//Get suggestion by ID
+require("./src/routes/getSuggestionByPk")(app);
+//Get all suggestions
+require("./src/routes/getAllSuggestions")(app);
+//Delete suggestion
+require("./src/routes/deleteSuggestion")(app);
+//Update suggestion
+require("./src/routes/updateSuggestion")(app);
 
 /* ============API AUTH ROUTES============= */
 //signup to API
