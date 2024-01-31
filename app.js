@@ -14,6 +14,11 @@ initDb();
 
 /* ........All routes list........... */
 require("./src/routes/home")(app);
+require("./src/routes/createSuggestion")(app);
+require("./src/routes/getSuggestionByPk")(app);
+require("./src/routes/getAllSuggestions")(app);
+require("./src/routes/deleteSuggestion")(app);
+require("./src/routes/updateSuggestion")(app);
 
 /* ============ADMIN ROUTES============= */
 //Get user by id
