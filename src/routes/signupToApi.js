@@ -27,7 +27,7 @@ module.exports = (app,firebase) => {
         // Ajoutez d'autres propriétés si nécessaire
       });
 
-      const message = `Compte créé avec succès!`;
+      const message = `Compte crée avec succès!`;
       res.json({ message, data: user });
     } catch (error) {
       if (
