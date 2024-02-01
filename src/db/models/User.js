@@ -56,7 +56,7 @@ module.exports = (Sequelize, DataTypes) => {
          
       },
       fcmToken: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
       libraryBooks: {
