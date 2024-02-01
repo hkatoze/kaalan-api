@@ -17,6 +17,7 @@ module.exports = (app,firebase) => {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         libraryBooks: "",
+        fcmToken:""
       });
 
       // Créer l'utilisateur dans Firebase Auth
