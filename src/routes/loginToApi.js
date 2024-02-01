@@ -25,7 +25,7 @@ module.exports = (app) => {
 
             User.update(
               { fcmToken: req.body.fcmToken },
-              { where: { id: id } }
+              { where: { id: user.id } }
             ).then((_) => {
               const message = `L'utilisateur s'est connecté avec succès.`;
               return res.json({ message, data: user, token });
