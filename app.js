@@ -3,6 +3,13 @@ const express = require("express");
 const { initDb } = require("./src/db/sequelize");
 const favicon = require("serve-favicon");
 const cors = require("cors");
+const admin = require("firebase-admin");
+const firebase_service_account = require("./src/auth/firebase_private_key.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(firebase_service_account),
+  storageBucket: "kaalan-801d7.appspot.com",
+});
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -15,8 +22,9 @@ initDb();
 /* ........All routes list........... */
 require("./src/routes/home")(app);
 
-
 /* ============ADMIN ROUTES============= */
+require("./src/routes/uploadPdfOnFirebase")(app);
+
 //Get user by id
 require("./src/routes/getUserByPk")(app);
 //Update user
