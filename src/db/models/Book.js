@@ -95,7 +95,7 @@ module.exports = (Sequelize, DataTypes) => {
       },
 
       bookLink: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
          
          
       },

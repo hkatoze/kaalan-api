@@ -22,8 +22,14 @@ module.exports = (app) => {
             const token = jwt.sign({ userId: user.id }, privateKey, {
               expiresIn: "365d",
             });
-            const message = `L'utilisateur s'est connecté avec succès.`;
-            return res.json({ message, data: user, token });
+
+            User.update(
+              { fcmToken: req.body.fcmToken },
+              { where: { id: id } }
+            ).then((_) => {
+              const message = `L'utilisateur s'est connecté avec succès.`;
+              return res.json({ message, data: user, token });
+            });
           });
       })
       .catch((error) => {

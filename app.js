@@ -54,7 +54,7 @@ require("./src/routes/getAllBooks")(app);
 //Get a book by ID
 require("./src/routes/getBookByPk")(app);
 //Create book
-require("./src/routes/createBook")(app);
+require("./src/routes/createBook")(app,admin);
 //Update book
 require("./src/routes/updateBook")(app);
 //Delete book
@@ -72,7 +72,7 @@ require("./src/routes/updateSuggestion")(app);
 
 /* ============API AUTH ROUTES============= */
 //signup to API
-require("./src/routes/signupToApi")(app);
+require("./src/routes/signupToApi")(app,admin);
 //Login to API
 require("./src/routes/loginToApi")(app);
 

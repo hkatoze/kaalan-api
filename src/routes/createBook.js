@@ -2,7 +2,7 @@ const { ValidationError } = require("sequelize");
 const { Book } = require("../db/sequelize");
 const auth = require("../auth/auth");
 
-module.exports = (app) => {
+module.exports = (app,firebase) => {
   app.post("/api/books/", auth, (req, res) => {
     Book.create(req.body)
       .then((book) => {
