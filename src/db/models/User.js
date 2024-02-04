@@ -20,15 +20,7 @@ module.exports = (Sequelize, DataTypes) => {
         },
       },
       phone: {
-        type: DataTypes.STRING,
-
-        unique: {
-          msg: "Ce numéro de téléphone est déjà utilisé.",
-        },
-        is: {
-          args: [/\d{3}-\d{3}-\d{4}/],
-          msg: "Le numéro de téléphone n'est pas valide.",
-        },
+        type: DataTypes.STRING, 
       },
       username: {
         type: DataTypes.STRING,
