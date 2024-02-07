@@ -51,6 +51,10 @@ module.exports = (Sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: true,
       },
+      resetPasswordCode: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       libraryBooks: {
         type: DataTypes.STRING,
       },

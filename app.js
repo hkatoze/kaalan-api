@@ -24,7 +24,11 @@ require("./src/routes/home")(app);
 
 /* ============ADMIN ROUTES============= */
 require("./src/routes/uploadPdfOnFirebase")(app);
+//Reset password
+require("./src/routes/resetPassword")(app);
 
+//Reset password code checking
+require("./src/routes/resetPasswordCodeVerify")(app);
 //Get user by id
 require("./src/routes/getUserByPk")(app);
 //Update user

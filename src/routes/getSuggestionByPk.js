@@ -16,7 +16,7 @@ module.exports = (app) => {
         res.json({ message, data: suggestion });
       })
       .catch((error) => {
-        const message = `La suggestion n'a pas pu être reccupéré. Réessayer dans quelques instants.`;
+        const message = `La suggestion n'a pas pu être reccupérée. Réessayer dans quelques instants.`;
         res.status(500).json({ message, data: error });
       });
   });
