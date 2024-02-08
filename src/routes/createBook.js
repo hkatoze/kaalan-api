@@ -2,8 +2,6 @@ const { ValidationError } = require("sequelize");
 const { Book, User } = require("../db/sequelize");
 const auth = require("../auth/auth");
 
- 
-
 module.exports = (app, firebase) => {
   app.post("/api/books/", auth, (req, res) => {
     Book.create(req.body)
@@ -24,8 +22,26 @@ module.exports = (app, firebase) => {
                 notification: {
                   title: "Nouveau livre ajouté!",
                   body: `${book.title}`,
-                  icon: "https://ucarecdn.com/c398df23-409d-4fd6-97b7-537c893bd8d4/-/preview/500x500/-/quality/smart/-/format/auto/",
-                  image: `${book.cover}`
+                },
+                android: {
+                  notification: {
+                    imageUrl: `${book.cover}`,
+                  },
+                },
+                apns: {
+                  payload: {
+                    aps: {
+                      "mutable-content": 1,
+                    },
+                  },
+                  fcm_options: {
+                    image: `${book.cover}`,
+                  },
+                },
+                webpush: {
+                  headers: {
+                    image: `${book.cover}`,
+                  },
                 },
                 tokens: registrationTokens,
               };
