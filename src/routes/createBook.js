@@ -22,7 +22,6 @@ module.exports = (app, firebase) => {
                 notification: {
                   title: "Nouveau livre ajouté!",
                   body: `${book.title}`,
-                  icon: "https://ucarecdn.com/c398df23-409d-4fd6-97b7-537c893bd8d4/-/preview/500x500/-/quality/smart/-/format/auto/"
                 },
                 android: {
                   notification: {
