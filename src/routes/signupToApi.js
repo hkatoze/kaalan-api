@@ -2,7 +2,7 @@ const { ValidationError, UniqueConstraintError } = require("sequelize");
 const bcrypt = require("bcrypt");
 const { User } = require("../db/sequelize");
 
-module.exports = (app,firebase) => {
+module.exports = (app, firebase) => {
   app.post("/api/signupToApi", async (req, res) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -17,15 +17,20 @@ module.exports = (app,firebase) => {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         libraryBooks: "",
-        fcmToken:""
+        fcmToken: "",
       });
 
       // Créer l'utilisateur dans Firebase Auth
-      const firebaseUser = await firebase.auth().createUser({
-        email: req.body.emailAddress,
-        password: req.body.password,
-        // Ajoutez d'autres propriétés si nécessaire
-      });
+      const existingUser = await firebase
+        .auth()
+        .getUserByEmail(req.body.emailAddress);
+
+      if (!existingUser) {
+        const firebaseUser = await firebase.auth().createUser({
+          email: req.body.emailAddress,
+          password: req.body.password,
+        });
+      }
 
       const message = `Compte crée avec succès!`;
       res.json({ message, data: user });
