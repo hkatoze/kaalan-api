@@ -4,9 +4,9 @@ const auth = require("../auth/auth");
 
 module.exports = (app) => {
   app.get("/api/books", auth, (req, res) => {
+    const limit = req.query.limit ? parseInt(req.query.limit) : null;
     if (req.query.category) {
       const category = req.query.category;
-      const limit = req.query.limit ? parseInt(req.query.limit) : null;
 
       return Book.findAndCountAll({
         where: { category: category },
@@ -19,10 +19,12 @@ module.exports = (app) => {
     if (req.query.author) {
       const author = req.query.author;
 
-      return Book.findAll({ where: { author: author } }).then((books) => {
-        const message = `Il y'a au total ${books.length} livres de l'auteur ${author}`;
-        res.json({ message, data: books });
-      });
+      return Book.findAll({ where: { author: author, limit: limit } }).then(
+        (books) => {
+          const message = `Il y'a au total ${books.length} livres de l'auteur ${author}`;
+          res.json({ message, data: books });
+        }
+      );
     }
 
     if (req.query.search) {
@@ -33,6 +35,7 @@ module.exports = (app) => {
           title: {
             [Op.like]: `%${searchQuery}%`,
           },
+          limit: limit,
         },
       }).then((books) => {
         const message = `La recherche pour ${searchQuery} a trouvé ${books.length} résultats`;
@@ -64,7 +67,9 @@ module.exports = (app) => {
       });
     }
 
-    Book.findAll()
+    Book.findAll({
+      limit: limit,
+    })
       .then((books) => {
         const message = `La liste complète des livres a bien été reccupérée.`;
 
