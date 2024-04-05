@@ -17,7 +17,7 @@ const sequelize = new Sequelize(
     logging: false,
   }
 );
-
+//test
 const Book = BookModel(sequelize, DataTypes);
 const Author = AuthorModel(sequelize, DataTypes);
 const Category = CategorieModel(sequelize, DataTypes);
