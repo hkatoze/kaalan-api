@@ -7,11 +7,11 @@ const UserModel = require("./models/User");
 const { books, authors, categories, users } = require("./testData");
 
 const sequelize = new Sequelize(
-  "u833159023_kaalan",
-  "u833159023_hkatoze",
+  "u235953842_kaalan",
+  "u235953842_hkatoze",
   "Kind@1404",
   {
-    host: "vbs-solutions.com",
+    host: "srv1301.hstgr.io",
     dialect: "mysql",
     dialectOptions: {},
     logging: false,
