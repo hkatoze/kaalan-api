@@ -11,7 +11,7 @@ admin.initializeApp({
   credential: admin.credential.cert(
     process.env.FIREBASE_KEY || firebase_service_account
   ),
-  storageBucket: "kaalan-801d7.appspot.com",
+  databaseURL: "kaalan-801d7.appspot.com",
 });
 const app = express();
 const port = process.env.PORT || 3000;
