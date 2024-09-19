@@ -10,10 +10,7 @@ const firebase_service_account = "./src/auth/firebase_private_key.json";
 admin.initializeApp({
   credential: admin.credential.cert(
     JSON.parse(
-      fs.readFileSync(
-        process.env.FIREBASE_SERVICE_ACCOUNT_KEY || firebase_service_account,
-        "utf8"
-      )
+      fs.readFileSync(process.env.API_KEY || firebase_service_account, "utf8")
     )
   ),
 });
