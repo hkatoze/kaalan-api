@@ -9,10 +9,9 @@ const firebase_service_account = "./src/auth/firebase_private_key.json";
 
 admin.initializeApp({
   credential: admin.credential.cert(
-    JSON.parse(
-      fs.readFileSync(process.env.API_KEY || firebase_service_account, "utf8")
-    )
+    process.env.FIREBASE_KEY || firebase_service_account
   ),
+  storageBucket: "kaalan-801d7.appspot.com",
 });
 const app = express();
 const port = process.env.PORT || 3000;
