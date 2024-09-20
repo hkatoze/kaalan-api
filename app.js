@@ -5,29 +5,18 @@ const favicon = require("serve-favicon");
 const cors = require("cors");
 const admin = require("firebase-admin");
 const fs = require("fs");
-const {
-  FIREBASE_TYPE,
-  FIREBASE_PROJECT_ID,
-  FIREBASE_PRIVATE_KEY_ID,
-  FIREBASE_PRIVATE_KEY,
-  FIREBASE_CLIENT_EMAIL,
-  FIREBASE_CLIENT_ID,
-  FIREBASE_AUTH_URI,
-  FIREBASE_TOKEN_URI,
-  FIREBASE_AUTH_PROVIDER,
-  FIREBASE_CLIENT_X509,
-  FIREBASE_UNIVERS_DOMAIN,
-} = require("./src/auth/firebase_private_key.js");
 
 admin.initializeApp({
   credential: admin.credential.cert({
-    projectId: `${process.env.FIREBASE_PROJECT_ID || FIREBASE_PROJECT_ID}`,
-    privateKey: `${process.env.FIREBASE_PRIVATE_KEY || FIREBASE_PRIVATE_KEY}`,
+    projectId: `${process.env.FIREBASE_PROJECT_ID || "FIREBASE_PROJECT_ID"}`,
+    privateKey: `${process.env.FIREBASE_PRIVATE_KEY || "FIREBASE_PRIVATE_KEY"}`,
     clientEmail: `${
-      process.env.FIREBASE_CLIENT_EMAIL || FIREBASE_CLIENT_EMAIL
+      process.env.FIREBASE_CLIENT_EMAIL || "FIREBASE_CLIENT_EMAIL"
     }`,
   }),
-  databaseURL: `${process.env.FIREBASE_CLIENT_EMAIL || FIREBASE_CLIENT_EMAIL}`,
+  databaseURL: `${
+    process.env.FIREBASE_CLIENT_EMAIL || "FIREBASE_CLIENT_EMAIL"
+  }`,
 });
 
 const app = express();
