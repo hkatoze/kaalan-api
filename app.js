@@ -1,3 +1,4 @@
+// @ts-nocheck
 const bodyParser = require("body-parser");
 const express = require("express");
 const { initDb } = require("./src/db/sequelize");
@@ -9,7 +10,11 @@ const fs = require("fs");
 admin.initializeApp({
   credential: admin.credential.cert({
     projectId: `${process.env.FIREBASE_PROJECT_ID || "FIREBASE_PROJECT_ID"}`,
-    privateKey: `${process.env.FIREBASE_PRIVATE_KEY || "FIREBASE_PRIVATE_KEY"}`,
+
+    privateKey: `${
+      process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n") ||
+      "FIREBASE_PRIVATE_KEY"
+    }`,
     clientEmail: `${
       process.env.FIREBASE_CLIENT_EMAIL || "FIREBASE_CLIENT_EMAIL"
     }`,
