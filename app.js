@@ -22,6 +22,7 @@ admin.initializeApp({
   databaseURL: `${
     process.env.FIREBASE_CLIENT_EMAIL || "FIREBASE_CLIENT_EMAIL"
   }`,
+  storageBucket: "kaalan-801d7.appspot.com",
 });
 
 const app = express();
