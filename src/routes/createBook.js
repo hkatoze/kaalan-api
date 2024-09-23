@@ -50,6 +50,7 @@ module.exports = (app, firebase) => {
                 .messaging()
                 .sendMulticast(notibody)
                 .then((response) => {
+                  console.log("registrationTokens: " + registrationTokens);
                   console.log(
                     response.successCount +
                       " notifications enyoyées avec succès."
