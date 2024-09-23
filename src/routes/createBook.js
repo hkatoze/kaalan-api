@@ -23,6 +23,26 @@ module.exports = (app, firebase) => {
                   title: "Nouveau livre ajouté!",
                   body: `${book.title}`,
                 },
+                android: {
+                  notification: {
+                    imageUrl: `${book.cover}`,
+                  },
+                },
+                apns: {
+                  payload: {
+                    aps: {
+                      "mutable-content": 1,
+                    },
+                  },
+                  fcm_options: {
+                    image: `${book.cover}`,
+                  },
+                },
+                webpush: {
+                  headers: {
+                    image: `${book.cover}`,
+                  },
+                },
                 tokens: registrationTokens,
               };
 
